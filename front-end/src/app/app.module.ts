@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { PrivateModule } from './private/private.module';
 import { PublicModule } from './public/public.module';
 import { AuthModule } from './shared/auth/auth.module';
+import { PageNotFoundModule } from './shared/components/page-not-found/page-not-found.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AuthModule } from './shared/auth/auth.module';
     PublicModule,
     PrivateModule,
     AuthModule,
+    PageNotFoundModule,
     AppRoutingModule,
   ],
   exports: [],
