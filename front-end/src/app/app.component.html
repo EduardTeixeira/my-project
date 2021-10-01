@@ -1,13 +1,5 @@
-<div class="app app-default">
-  <nav>
-    <a routerLink="/" routerLinkActive="active">Página Inicial</a>
-    <br>
-    <a routerLink="/login" routerLinkActive="active">Login</a>
-    <br>
-    <a routerLink="/error" routerLinkActive="active">Error</a>
-    <br>
-    <button (click)="userIsAuthenticated()">Autenticação</button>
-  </nav>
-</div>
+<app-top-menu></app-top-menu>
 
 <router-outlet></router-outlet>
+
+<app-footer></app-footer>

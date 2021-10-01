@@ -9,6 +9,8 @@ import { PrivateModule } from './private/private.module';
 import { PublicModule } from './public/public.module';
 import { AuthModule } from './shared/auth/auth.module';
 import { PageNotFoundModule } from './shared/components/page-not-found/page-not-found.module';
+import { TopMenuModule } from './shared/components/top-menu/top-menu.module';
+import { FooterModule } from './shared/components/footer/footer.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { PageNotFoundModule } from './shared/components/page-not-found/page-not-
     AuthModule,
     PageNotFoundModule,
     AppRoutingModule,
+    TopMenuModule,
+    FooterModule,
   ],
   exports: [],
   providers: [],
