@@ -6,13 +6,23 @@ import { PageNotFoundComponent } from './../shared/components/page-not-found/pag
 
 const routes: Routes = [
   {
-    path: 'dashboard',
-    component: DashboardComponent
+    path: '',
+    data: {
+      title: 'Área restrita'
+    },
+    children: [
+      {
+        path: '',
+        component: DashboardComponent,
+        // loadChildren: () => import('./dashboard/private.module').then(m => m.PrivateModule)
+      },
+      {
+        path: 'teste',
+        component: DashboardComponent,
+        // loadChildren: () => import('./dashboard/private.module').then(m => m.PrivateModule)
+      },
+    ]
   },
-  {
-    path: '**',
-    component: PageNotFoundComponent
-  }
 ];
 
 @NgModule({

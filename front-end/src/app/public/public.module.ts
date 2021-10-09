@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
-import { LoginComponent } from './login/login.component';
 import { PublicRoutingModule } from './public-routing.module';
 import { HomePageComponent } from './home-page/home-page.component';
 import { FooterModule } from '../shared/components/footer/footer.module';
@@ -13,10 +13,13 @@ import { FooterModule } from '../shared/components/footer/footer.module';
     FormsModule,
     PublicRoutingModule,
     FooterModule,
+    RouterModule
   ],
   declarations: [
-    LoginComponent,
     HomePageComponent,
+  ],
+  exports:[
+
   ],
 })
 export class PublicModule { }

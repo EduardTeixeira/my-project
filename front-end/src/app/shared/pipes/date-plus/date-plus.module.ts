@@ -9,7 +9,7 @@ import { DatePlusPipe } from './date-plus.pipe';
   ],
   declarations: [
     DatePlusPipe,
-  ],
+   ],
   exports: [
     DatePlusPipe,
   ]
