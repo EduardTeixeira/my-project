@@ -8,18 +8,16 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { FooterModule } from '../shared/components/footer/footer.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    PublicRoutingModule,
-    FooterModule,
-    RouterModule
-  ],
-  declarations: [
-    HomePageComponent,
-  ],
-  exports:[
-
-  ],
+   imports: [
+      CommonModule,
+      FormsModule,
+      PublicRoutingModule,
+      FooterModule,
+      RouterModule
+   ],
+   declarations: [
+      HomePageComponent,
+   ],
+   exports: [],
 })
 export class PublicModule { }

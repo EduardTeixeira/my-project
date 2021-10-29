@@ -7,14 +7,14 @@ import { PrivateRoutingModule } from './private-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    PrivateRoutingModule,
-    RouterModule,
-  ],
-  declarations: [
-    DashboardComponent,
-  ]
+   imports: [
+      CommonModule,
+      FormsModule,
+      PrivateRoutingModule,
+      RouterModule,
+   ],
+   declarations: [
+      DashboardComponent,
+   ]
 })
 export class PrivateModule { }

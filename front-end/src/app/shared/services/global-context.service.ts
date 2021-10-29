@@ -6,22 +6,30 @@ import { Router } from '@angular/router';
 })
 export class GlobalContextService {
 
-   private routerOutletName: string = '';
+   private showMenu: boolean = true;
+   private showFooter: boolean = true;
 
    constructor(
       private router: Router
    ) { }
 
-   get getRouterOutletName(): string {
-      return this.routerOutletName;
+   get getShowMenu(): boolean {
+      return this.showMenu;
    }
-   set setRouterOutletName(value: string) {
-      this.routerOutletName = value;
+   set setShowMenu(value: boolean) {
+      this.showMenu = value;
    }
 
-   loginRoute() {
-      this.router.navigate(['/login']);
-      this.setRouterOutletName = 'login';
+   get getShowFooter(): boolean {
+      return this.showFooter;
+   }
+   set setShowFooter(value: boolean) {
+      this.showFooter = value;
+   }
+
+   showHeaderFooter(header: boolean, footer: boolean) {
+      this.showMenu = header;
+      this.showFooter = footer;
    }
 
 }

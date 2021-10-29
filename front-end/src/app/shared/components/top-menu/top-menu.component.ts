@@ -24,8 +24,4 @@ export class TopMenuComponent implements OnInit {
       this.router.navigate(['/private']);
    }
 
-   login() {
-      this.globalContextService.loginRoute();
-   }
-
 }

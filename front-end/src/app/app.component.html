@@ -1,21 +1,9 @@
-<div *ngIf="globalContextService.getRouterOutletName === ''">
+<div>
 
-   <app-top-menu></app-top-menu>
+   <app-top-menu *ngIf="globalContextService.getShowMenu"></app-top-menu>
 
    <router-outlet></router-outlet>
 
-   <app-footer></app-footer>
-
-</div>
-
-<div *ngIf="globalContextService.getRouterOutletName === 'login'">
-
-   <router-outlet name='login'></router-outlet>
-
-</div>
-
-<div *ngIf="globalContextService.getRouterOutletName === 'dashboard'">
-
-   <router-outlet name='dashboard'></router-outlet>
+   <app-footer *ngIf="globalContextService.getShowFooter"></app-footer>
 
 </div>
