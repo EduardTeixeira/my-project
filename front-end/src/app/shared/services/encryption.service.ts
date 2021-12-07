@@ -1,31 +1,78 @@
 import { Injectable } from '@angular/core';
 
-import * as cryptoJS from 'crypto-js';
+import * as forge from 'node-forge';
 
 import { environment } from './../../../environments/environment';
 
 @Injectable({
-    providedIn: 'root'
+   providedIn: 'root'
 })
 export class EncryptionService {
 
-    constructor() { }
+   constructor() { }
 
-    encrypt(value: string): string {
-        return cryptoJS.AES.encrypt(value, environment.CRYPTO_KEY.trim()).toString();
-    }
+   private createCipher(): any {
+      const cipher = forge.cipher.createCipher('AES-CBC', forge.util.createBuffer(environment.CRYPTO_KEY));
+      cipher.start(
+         {
+            iv: environment.CRYPTO_IV,
+         }
+      );
+      return cipher;
+   }
 
-    decrypt(textToDecrypt: string) {
-        return cryptoJS.AES.decrypt(textToDecrypt, environment.CRYPTO_KEY.trim()).toString(cryptoJS.enc.Utf8);
-    }
+   private createDecipher(): any {
+      const decipher = forge.cipher.createDecipher('AES-CBC', forge.util.createBuffer(environment.CRYPTO_KEY));
+      decipher.start(
+         {
+            iv: environment.CRYPTO_IV,
+         }
+      );
+      return decipher;
+   }
 
-    encryptEntity(data: any): string {
-        return cryptoJS.AES.encrypt(JSON.stringify(data), environment.CRYPTO_KEY.trim()).toString();
-    }
+   encryptValue(data: any): any {
+      const cipher = this.createCipher();
+      cipher.update(
+         forge.util.createBuffer(
+            forge.util.encodeUtf8(data),
+         )
+      );
+      cipher.finish();
+      return forge.util.encode64(cipher.output.getBytes());
+   }
 
-    decryptEntity(data: any) {
-        const bytes = cryptoJS.AES.decrypt(data, environment.CRYPTO_KEY.trim());
-        return JSON.parse(bytes.toString(cryptoJS.enc.Utf8));
-    }
+   decryptValue(data: any): any {
+      const decipher = this.createDecipher();
+      decipher.update(
+         forge.util.createBuffer(
+            forge.util.decode64(data),
+         )
+      );
+      decipher.finish();
+      return forge.util.decodeUtf8(decipher.output.getBytes());
+   }
+
+   encryptObject(data: any): any {
+      const cipher = this.createCipher();
+      cipher.update(
+         forge.util.createBuffer(
+            forge.util.encodeUtf8(JSON.stringify(data)),
+         )
+      );
+      cipher.finish();
+      return forge.util.encode64(cipher.output.getBytes());
+   }
+
+   decryptObject(data: any): any {
+      const decipher = this.createDecipher();
+      decipher.update(
+         forge.util.createBuffer(
+            forge.util.decode64(data),
+         )
+      );
+      decipher.finish();
+      return JSON.parse(forge.util.decodeUtf8(decipher.output.getBytes()));
+   }
 
 }

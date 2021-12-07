@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
@@ -15,6 +15,7 @@ import { FooterModule } from './shared/components/footer/footer.module';
 
 import { AppGuardService } from './app-guard.service';
 import { GlobalContextService } from './shared/services/global-context.service';
+import { OptionsInterceptor } from './core/interceptors/options.interceptor';
 
 @NgModule({
    declarations: [
@@ -33,6 +34,11 @@ import { GlobalContextService } from './shared/services/global-context.service';
       FooterModule,
    ],
    providers: [
+      {
+         provide: HTTP_INTERCEPTORS,
+         useClass: OptionsInterceptor,
+         multi: true
+      },
       AppGuardService,
       GlobalContextService,
    ],

@@ -5,7 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
    {
-      path: '',
+      path: 'private',
       data: {
          title: 'Área restrita'
       },
@@ -13,12 +13,14 @@ const routes: Routes = [
          {
             path: '',
             component: DashboardComponent,
-            // loadChildren: () => import('./dashboard/private.module').then(m => m.PrivateModule)
+         },
+         {
+            path: 'private',
+            component: DashboardComponent,
          },
          {
             path: 'teste',
             component: DashboardComponent,
-            // loadChildren: () => import('./dashboard/private.module').then(m => m.PrivateModule)
          },
       ]
    },

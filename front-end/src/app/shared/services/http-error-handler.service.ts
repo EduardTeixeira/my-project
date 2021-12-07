@@ -4,22 +4,24 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+   providedIn: 'root'
 })
 export class HttpErrorHandlerService {
 
-  constructor() { }
+   constructor() { }
 
-  handleError(err: HttpErrorResponse): Observable<any> {
-    let displayMessage = '';
+   handleError(err: HttpErrorResponse): Observable<any> {
 
-    if (err.error instanceof ErrorEvent) {
-      displayMessage = `Client-side error: ${err.error.message}`;
-    } else {
-      displayMessage = `Server-side error: ${err.message}`;
-    }
+      let displayMessage = '';
 
-    return throwError(displayMessage);
-  }
+      if (err.error instanceof ErrorEvent) {
+         displayMessage = `Client-side error: ${err.error.message}`;
+      } else {
+         displayMessage = `Server-side error: ${err.message}`;
+      }
+
+      return throwError(displayMessage);
+
+   }
 
 }

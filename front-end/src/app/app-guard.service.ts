@@ -15,12 +15,9 @@ export class AppGuardService implements CanActivate, CanActivateChild {
 
   canActivate(_route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (this.userService.userIsAuthenticated()) {
-      this.router.navigate(['/dashboard']);
       return true;
     } else {
-      // this.router.navigate(['/auth']);
-      // window.location.href = '/';
-      this.router.navigate(['/private']);
+      this.router.navigate(['/login']);
       return false;
     }
   }

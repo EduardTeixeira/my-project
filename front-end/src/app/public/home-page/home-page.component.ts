@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { BehaviorSubject } from 'rxjs';
+
 import { GlobalContextService } from './../../shared/services/global-context.service';
 
 @Component({
@@ -10,12 +12,17 @@ import { GlobalContextService } from './../../shared/services/global-context.ser
 export class HomePageComponent implements OnInit {
 
    constructor(
-      private globalContextService: GlobalContextService
+      public globalContextService: GlobalContextService
    ) {
       this.globalContextService.showHeaderFooter(true, true);
    }
 
    ngOnInit() {
+   }
+
+   teste() {
+      // this.globalContextService.setMyObject({ obj: 1 });
+      this.globalContextService.objeto = 'puisdfsdf';
    }
 
 }

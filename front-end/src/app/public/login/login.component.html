@@ -1,35 +1,63 @@
 <section class="align-content text-center">
 
-  <main class="form-signin">
+   <main class="form-signin">
 
-    <form>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
 
-      <img class="mb-4" src="../favicon.ico" alt="" width="72" height="57">
+         <div class="home-page">
+            <a routerLink="/">
+               <img class="mb-4" src="../favicon.ico" alt="" width="72" height="57">
+            </a>
+         </div>
 
-      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+         <h1 class="h3 mb-3 fw-normal">Bem-vindo</h1>
 
-      <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Email address</label>
-      </div>
+         <div class="form-floating">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+               formControlName="email" required>
+            <label for="floatingInput">Email</label>
+         </div>
 
-      <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-        <label for="floatingPassword">Password</label>
-      </div>
+         <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+               formControlName="password" required>
+            <label for="floatingPassword">Senha</label>
+         </div>
 
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-      </div>
+         <div class="checkbox mb-3">
+            <!--
+            <label>
+               <input type="checkbox" value="remember-me">
+               Manter-me logado
+            </label>
+            -->
+         </div>
 
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+         <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="!loginForm.valid">
+            Acessar
+         </button>
 
-      <p class="mt-5 mb-3 text-muted">&copy; 2020–2022</p>
+         <div class="checkbox mb-3 newAccount">
+            <a class="newAccountLink" routerLink="">
+               Esqueceu a sua senha?
+            </a>
+         </div>
 
-    </form>
+         <div class="checkbox mb-3 newAccount">
+            <label>
+               Ainda não tem conta?
+               <a class="newAccountLink" routerLink="/signup">
+                  Cadastre-se
+               </a>
+            </label>
+         </div>
 
-  </main>
+         <p class="mt-5 mb-3 text-muted">
+            &copy; 2020–2022
+         </p>
+
+      </form>
+
+   </main>
 
 </section>
