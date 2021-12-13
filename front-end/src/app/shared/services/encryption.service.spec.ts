@@ -101,7 +101,7 @@ describe('Service: EncryptionService', () => {
 
     // TESTAR CRIPTO E DESCRIPTO DE OBJETOS
 
-    it('#encryptEntity/decryptEntity : deve testar objetos com acentuação', () => {
+    it('#encryptObject/decryptObject : deve testar objetos com acentuação', () => {
 
         const value = {
             number: 1,
@@ -112,27 +112,27 @@ describe('Service: EncryptionService', () => {
             }
         };
 
-        const encryptObject = encryptionService.encryptEntity(value);
+        const encryptObject = encryptionService.encryptObject(value);
 
-        const decryptObject = encryptionService.decryptEntity(encryptObject);
+        const decryptObject = encryptionService.decryptObject(encryptObject);
 
         expect(JSON.stringify(value)).toBe(JSON.stringify(decryptObject));
 
     });
 
-    it('#decryptEntity: deve testar descriptografia e retornar objeto', () => {
+    it('#decryptObject: deve testar descriptografia e retornar objeto', () => {
 
         const originalValue = '{"fi":7,"chn":"3","trn":424,"data":{"CONTA_CORRENTE":329,"COOPERATIVA":1,"VALOR":"senháDoÙsuáãário"}}';
 
         const value = '3tBBXHaPjEeNwM5/YyWvXm6TpXQ0d6lavC+fMFQLpDPRZapfUiA6N8/bJo+tSjHGSiEcBrppzDcCR3tsHL9w8LdgbvVeeZTY5LVswtaYr2/paCeuM/QqkUdgBV1JvKHZpwzgwjz9SrnqrnfDIXV0DQ==';
 
-        const decryptObject = encryptionService.decryptEntity(value);
+        const decryptObject = encryptionService.decryptObject(value);
 
         expect(JSON.stringify(decryptObject)).toBe(originalValue);
 
     });
 
-    it('#encryptEntity/decryptEntity: deve testar TRN 424', () => {
+    it('#encryptObject/decryptObject: deve testar TRN 424', () => {
 
         const originalRequest = {
             fi: 7,
@@ -145,44 +145,68 @@ describe('Service: EncryptionService', () => {
             }
         };
 
-        const encryptObject = encryptionService.encryptEntity(originalRequest);
+        const encryptObject = encryptionService.encryptObject(originalRequest);
         console.log('TRN 424 >>> ' + encryptObject)
 
-        const decryptObject = encryptionService.decryptEntity(encryptObject);
+        const decryptObject = encryptionService.decryptObject(encryptObject);
         console.log('TRN 424 >>> ' + JSON.stringify(decryptObject))
 
         expect(JSON.stringify(decryptObject)).toBe(JSON.stringify(originalRequest));
 
     });
 
-    it('#encryptEntity/decryptEntity: deve testar TRN 424 - data', () => {
+    it('#encryptObject/decryptObject: deve testar TRN 424 - data', () => {
 
         const originalRequest = {
             fi: 7,
             chn: "3",
             trn: 424,
             data: {
-                CONTA_CORRENTE: 329,
-                COOPERATIVA: 1,
-                VALOR: 'senháDoÙsuáãário',
-                ZERO: '0',
-                TESTE: null,
-                OBJETO: {
-                    CONTA_CORRENTE: 329,
-                    COOPERATIVA: 1,
-                    VALOR: 'senháDoÙsuáãário',
-                    TEST: undefined
-                }
+                "CONTA_CORRENTE": 12672769,
+                "COOPERATIVA": 1,
+                "TITULARIDADE": 1,
+                "TIPO_USUARIO_CONTA_JURIDICA": "2",
+                "CPF_USUARIO_CONTA_JURIDICA": "0",
+                "FRASE_SECRETA": "0000000000",
+                "SENHA": "20.20.20.20.20.20.20.20"
             }
         };
 
-        const encryptObject = encryptionService.encryptEntity(originalRequest.data);
+        const encryptObject = encryptionService.encryptObject(originalRequest.data);
         console.log('TRN 424 - data >>> ' + encryptObject)
 
-        const decryptObject = encryptionService.decryptEntity(encryptObject);
+        const decryptObject = encryptionService.decryptObject(encryptObject);
         console.log('TRN 424 - data >>> ' + JSON.stringify(decryptObject))
 
         expect(JSON.stringify(decryptObject)).toBe(JSON.stringify(originalRequest.data));
+
+    });
+
+
+
+    // DESCRIPT (OBJETO E VALOR UNICO) ALGUMAS REQUESTS DO FRONT PARA VISUALIZAR O CONTEUDO
+
+    it('#decryptValue: deve testar descriptografia simples', () => {
+
+        const valorCriptografado = "T3mtkO21XWl4bYyVMINzGayFpIBp1kP5ciYafwQxUW4=";
+
+        const decryptValue = encryptionService.decryptValue(valorCriptografado);
+        console.log('#decryptValue ::: VALOR DESCRIPTOGRAFADO');
+        console.log(decryptValue);
+
+        expect(true).toBe(true);
+
+    });
+
+    it('#decryptObject: deve testar descriptografia e retornar objeto', () => {
+
+        const valorCriptografado = 'mxJvznmVINviejbRZQpRDScLkpUYd4rQLsS/Mj0J50BqntuXRv4doS/28Av2Ae+0';
+
+        const decryptObject = encryptionService.decryptObject(valorCriptografado);
+        console.log('#decryptObject ::: OBJETO DESCRIPTOGRAFADO');
+        console.log(decryptObject);
+
+        expect(true).toBe(true);
 
     });
 

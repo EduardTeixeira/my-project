@@ -7,10 +7,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { LoginComponent } from './login.component';
 import { LoginRoutingModule } from './login-routing.module';
 import { SharedComponentsModule } from './../../shared/components/shared-components.module';
+import { RecoveryPasswordDialogComponent } from './dialogs/recovery-password-dialog/recovery-password-dialog.component';
 
 @NgModule({
    imports: [
@@ -22,10 +24,12 @@ import { SharedComponentsModule } from './../../shared/components/shared-compone
       MatInputModule,
       ReactiveFormsModule,
       MatIconModule,
+      MatDialogModule,
       SharedComponentsModule,
    ],
    declarations: [
       LoginComponent,
+      RecoveryPasswordDialogComponent,
    ],
    schemas: [
       CUSTOM_ELEMENTS_SCHEMA

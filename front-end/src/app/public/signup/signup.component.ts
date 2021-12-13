@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroupDirective, ValidationErrors, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { CustomerService } from './../../shared/services/customer.service';
-import { HeaderService } from 'src/app/core/services/header.service';
+import { GlobalContextService } from './../../shared/services/global-context.service';
 
 @Component({
    selector: 'app-signup',
@@ -24,16 +25,16 @@ export class SignupComponent implements OnInit {
    @ViewChild(FormGroupDirective) sufDirective: FormGroupDirective | undefined;
 
    constructor(
+      private globalContextService: GlobalContextService,
       private customer: CustomerService,
       private fb: FormBuilder,
       private snackBar: MatSnackBar,
-      private router: Router,
-      private header: HeaderService
-   ) { }
-
-   ngOnInit() {
-      this.header.setHeaderButtonsVisibility(false);
+      private router: Router
+   ) {
+      this.globalContextService.showHeaderFooter(false, false);
    }
+
+   ngOnInit() { }
 
    matchPasswords(signupGroup: AbstractControl): ValidationErrors | null {
       const password = signupGroup.get('password')?.value;
@@ -46,6 +47,7 @@ export class SignupComponent implements OnInit {
    get confirmedPassword() { return this.signupForm.get('confirmedPassword'); }
 
    signup() {
+
       const customer = this.signupForm.value;
 
       this.customer.createCustomer(
@@ -62,8 +64,11 @@ export class SignupComponent implements OnInit {
 
             setTimeout(() => this.router.navigateByUrl('/'), 6000);
          },
-         err => this.snackBar.open('There was a problem creating your account.', 'Close', { duration: 5000 })
+         (err) => {
+            this.snackBar.open('There was a problem creating your account.', 'Close', { duration: 5000 })
+         }
       );
+
    }
 
 }

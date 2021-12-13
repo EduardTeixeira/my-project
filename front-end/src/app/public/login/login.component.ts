@@ -3,10 +3,12 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
 import { GlobalContextService } from './../../shared/services/global-context.service';
 import { SessionService } from './../../core/services/session.service';
 import { AuthenticationService } from './../../core/services/authentication.service';
+import { RecoveryPasswordDialogComponent } from './dialogs/recovery-password-dialog/recovery-password-dialog.component';
 
 @Component({
    selector: 'app-login',
@@ -26,14 +28,15 @@ export class LoginComponent implements OnInit {
       private session: SessionService,
       private snackBar: MatSnackBar,
       private fb: FormBuilder,
-      private location: Location
-   ) { }
-
-   ngOnInit() {
+      private location: Location,
+      private dialog: MatDialog
+   ) {
       this.globalContextService.showHeaderFooter(false, false);
    }
 
-   login() {
+   ngOnInit(): void { }
+
+   login(): void {
 
       const credentials = this.loginForm.value;
 
@@ -51,6 +54,23 @@ export class LoginComponent implements OnInit {
             this.loginForm.patchValue({ password: '' });
          }
       );
+   }
+
+   openDialog(): void {
+
+      const myDialog = this.dialog.open(RecoveryPasswordDialogComponent, {
+         maxWidth: 420,
+         disableClose: true
+      });
+
+      myDialog.afterClosed().subscribe(result => {
+         console.log('The dialog was closed...');
+      });
+
+   }
+
+   editCompanyFormSubmit(email: string): void {
+
    }
 
 }

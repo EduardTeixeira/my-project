@@ -10,24 +10,23 @@ import { HttpErrorHandlerService } from './../../shared/services/http-error-hand
 @Injectable({
    providedIn: 'root'
 })
-export class AuthenticationService {
+export class PasswordService {
 
-   private url: string = `${environment.API_ENDPOINT}/oauth`;
+   private url: string = `${environment.API_ENDPOINT}/password`;
 
    constructor(
       private http: HttpClient,
       private eh: HttpErrorHandlerService
    ) { }
 
-   login(email: string, password: string): Observable<object> {
+   recoveryPassword(email: string): Observable<object> {
 
       const body = {
-         username: email,
-         password: password,
+         username: email
       }
 
       return this.http.post<object>(
-         `${this.url}/token`,
+         `${this.url}/recovery`,
          body
       ).pipe(
          catchError
