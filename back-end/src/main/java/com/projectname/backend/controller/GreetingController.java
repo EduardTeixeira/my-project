@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.projectname.backend.model.Greeting;
 
@@ -23,18 +25,18 @@ public class GreetingController {
 	}
 
 	@PostMapping("/greeting")
-	public String postGreeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return "Greeting - POST";
+	public String postGreeting(@RequestBody Greeting greeting) {
+		return "Greeting - POST " + greeting.getContent();
 	}
 
 	@PutMapping("/greeting")
-	public String putGreeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return "Greeting - PUT";
+	public String putGreeting(@RequestBody Greeting greeting) {
+		return "Greeting - PUT " + greeting.getId();
 	}
 
-	@DeleteMapping("/greeting")
-	public String deleteGreeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return "Greeting - DELETE";
+	@DeleteMapping("/greeting/{id}")
+	public String deleteGreeting(@PathVariable Long id) {
+		return "Greeting - DELETE " + id;
 	}
 
 }
