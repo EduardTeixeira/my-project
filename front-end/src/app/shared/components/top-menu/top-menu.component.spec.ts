@@ -6,23 +6,25 @@ import { DebugElement } from '@angular/core';
 import { TopMenuComponent } from './top-menu.component';
 
 describe('TopMenuComponent', () => {
-  let component: TopMenuComponent;
-  let fixture: ComponentFixture<TopMenuComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TopMenuComponent ]
-    })
-    .compileComponents();
-  }));
+   let component: TopMenuComponent;
+   let fixture: ComponentFixture<TopMenuComponent>;
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TopMenuComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+   beforeEach(async(() => {
+      TestBed.configureTestingModule({
+         declarations: [TopMenuComponent]
+      })
+         .compileComponents();
+   }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+   beforeEach(() => {
+      fixture = TestBed.createComponent(TopMenuComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+   });
+
+   it('should create', () => {
+      expect(component).toBeTruthy();
+   });
+
 });

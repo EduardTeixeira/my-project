@@ -6,13 +6,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
-import { PublicRoutingModule } from './public-routing.module';
 import { HomePageComponent } from './home-page/home-page.component';
-import { FooterModule } from '../shared/components/footer/footer.module';
 import { ProductComponent } from './product/product.component';
-import { SharedComponentsModule } from '../shared/components/shared-components.module';
 import { SignupComponent } from './signup/signup.component';
+
+import { PublicRoutingModule } from './public-routing.module';
+
+import { FooterModule } from '../shared/components/footer/footer.module';
+import { SharedComponentsModule } from '../shared/components/shared-components.module';
 import { LoginModule } from './login/login.module';
+import { LoaderModule } from './../shared/components/loader/loader.module';
 
 @NgModule({
    imports: [
@@ -26,6 +29,7 @@ import { LoginModule } from './login/login.module';
       MatInputModule,
       ReactiveFormsModule,
       SharedComponentsModule,
+      LoaderModule
    ],
    declarations: [
       HomePageComponent,

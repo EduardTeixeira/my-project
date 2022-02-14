@@ -1,5 +1,9 @@
 <div style="height: 100%;">
 
+   <!--
+   <app-loader *ngIf="globalContextService.getShowLoading"></app-loader>
+   -->
+
    <app-top-menu *ngIf="globalContextService.getShowMenu"></app-top-menu>
 
    <router-outlet></router-outlet>

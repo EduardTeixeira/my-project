@@ -8,6 +8,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class GlobalContextService {
 
+   private showLoading: boolean = true // false;
+
    private userToken: string = '';
 
    private showMenu: boolean = true;
@@ -23,6 +25,13 @@ export class GlobalContextService {
    constructor(
       private router: Router
    ) { }
+
+   get getShowLoading(): boolean {
+      return this.showLoading;
+   }
+   set setShowLoading(value: boolean) {
+      this.showLoading = value;
+   }
 
    get getUserToken(): string {
       return this.userToken;

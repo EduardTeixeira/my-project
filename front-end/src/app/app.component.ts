@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { GlobalContextService } from './shared/services/global-context.service';
+import { UserService } from './shared/services/user.service';
 
 @Component({
    selector: 'app-root',
@@ -9,14 +10,13 @@ import { GlobalContextService } from './shared/services/global-context.service';
 })
 export class AppComponent {
 
-   isAuthenticated: boolean = false;
-
    constructor(
-      public globalContextService: GlobalContextService
+      public globalContextService: GlobalContextService,
+      private userService: UserService,
    ) { }
 
    userIsAuthenticated(): boolean {
-      return this.isAuthenticated = !this.isAuthenticated;
+      return this.userService.userIsAuthenticated();
    }
 
 }

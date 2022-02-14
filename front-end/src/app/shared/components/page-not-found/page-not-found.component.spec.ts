@@ -6,6 +6,7 @@ import { DebugElement } from '@angular/core';
 import { PageNotFoundComponent } from './page-not-found.component';
 
 describe('PageNotFoundComponent', () => {
+
    let component: PageNotFoundComponent;
    let fixture: ComponentFixture<PageNotFoundComponent>;
 
@@ -25,4 +26,5 @@ describe('PageNotFoundComponent', () => {
    it('should create', () => {
       expect(component).toBeTruthy();
    });
+
 });

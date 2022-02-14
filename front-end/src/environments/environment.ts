@@ -4,7 +4,7 @@
 
 export const environment = {
    production: false,
-   API_ENDPOINT: 'http://localhost:8080/v1',
+   API_ENDPOINT: 'http://localhost:8080',
    CRYPTO_KEY: 'H4DyVzcJqATH8tJwCFzv8hhO896ThyKL',
    CRYPTO_IV: 'ZW5jcnlwdGlvbklu',
 };

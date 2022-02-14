@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
-import { AppGuardService } from './app-guard.service';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
    {
@@ -15,10 +15,10 @@ const routes: Routes = [
          {
             path: '',
             loadChildren: () => import('./private/private.module').then(m => m.PrivateModule),
-            canActivate: [AppGuardService],
-            // canActivate: [AppGuardService],
+            canActivate: [AuthGuard],
+            // canActivate: [AuthGuard],
             // canLoad: [AuthGuard],
-            canActivateChild: [AppGuardService],
+            canActivateChild: [AuthGuard],
          },
       ]
    },

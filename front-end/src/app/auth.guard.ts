@@ -1,32 +1,24 @@
 import { Injectable } from '@angular/core';
-import {
-   CanActivate,
-   Router,
-   ActivatedRouteSnapshot,
-   RouterStateSnapshot,
-   CanActivateChild,
-   NavigationExtras,
-   CanLoad,
-   Route
-} from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateChild } from '@angular/router';
 
-import { AuthService } from './auth.service';
-import { UserService } from '../services/user.service';
+import { UserService } from './shared/services/user.service';
 
 @Injectable({
-   providedIn: 'root',
+   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
 
+   // store the URL so we can redirect after logging in
+   redirectUrl: string | null = null;
+
    constructor(
-      private authService: AuthService,
       private router: Router,
       private userService: UserService
    ) { }
 
    canActivate(_route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
       if (this.userService.userIsAuthenticated()) {
-         this.authService.redirectUrl = state.url;
+         this.redirectUrl = state.url;
          return true;
       } else {
          this.router.navigate(['/login']);

@@ -8,12 +8,12 @@ import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { AuthModule } from './shared/auth/auth.module';
 import { PageNotFoundModule } from './shared/components/page-not-found/page-not-found.module';
 import { TopMenuModule } from './shared/components/top-menu/top-menu.module';
 import { FooterModule } from './shared/components/footer/footer.module';
+import { LoaderModule } from './shared/components/loader/loader.module';
 
-import { AppGuardService } from './app-guard.service';
+import { AuthGuard } from './auth.guard';
 import { GlobalContextService } from './shared/services/global-context.service';
 import { OptionsInterceptor } from './core/interceptors/options.interceptor';
 
@@ -27,11 +27,11 @@ import { OptionsInterceptor } from './core/interceptors/options.interceptor';
       ReactiveFormsModule,
       FormsModule,
       HttpClientModule,
-      AuthModule,
       PageNotFoundModule,
       AppRoutingModule,
       TopMenuModule,
       FooterModule,
+      LoaderModule,
    ],
    providers: [
       {
@@ -39,7 +39,7 @@ import { OptionsInterceptor } from './core/interceptors/options.interceptor';
          useClass: OptionsInterceptor,
          multi: true
       },
-      AppGuardService,
+      AuthGuard,
       GlobalContextService,
    ],
    bootstrap: [

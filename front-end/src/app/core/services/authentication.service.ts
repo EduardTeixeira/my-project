@@ -19,15 +19,15 @@ export class AuthenticationService {
       private eh: HttpErrorHandlerService
    ) { }
 
-   login(email: string, password: string): Observable<object> {
+   login(email: string, password: string): Observable<any> {
 
       const body = {
          username: email,
          password: password,
       }
 
-      return this.http.post<object>(
-         `${this.url}/token`,
+      return this.http.post(
+         `${this.url}/login`,
          body
       ).pipe(
          catchError

@@ -15,13 +15,6 @@ export class TopMenuComponent implements OnInit {
       private globalContextService: GlobalContextService,
    ) { }
 
-   ngOnInit() {
-   }
-
-   testeRota() {
-      console.log('testeRota...');
-      // this.router.navigateByUrl('/private');
-      this.router.navigate(['/private']);
-   }
+   ngOnInit() { }
 
 }
